@@ -13,7 +13,7 @@ metadata:
 spec:
   destination:
     namespace: {{ $val.destination.namespace | required (printf "No destination.namespace specified for %s" $key ) }}
-    server: {{ .Values.global.default.app.destination.server | required (printf "No destination.server specified for %s" $key ) }}
+    server: {{ $.Values.default.app.destination.server | required (printf "No destination.server specified for %s" $key ) }}
 {{- if $.Values.global.projectOverride }}
   project: {{ $.Values.global.projectOverride }}
 {{- else }}
