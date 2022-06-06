@@ -29,7 +29,7 @@ spec:
   source:
     path: {{ tpl $val.source.path $ }}
     repoURL: {{ $val.source.repoURL | required (printf "No source.repoURL specified for %s" $key ) }}
-    targetRevision: {{ $val.source.targetRevision | default $.Values.global.default.app.source.targetRevision |  default HEAD  }}
+    targetRevision: {{ $val.source.targetRevision | default $.Values.global.default.app.source.targetRevision |  default "HEAD"  }}
 {{- if $val.source.extraSourceFields }}
 {{ tpl $val.source.extraSourceFields $ | indent 4 }}
 {{- else if $.Values.global.default.app.source.extraSourceFields }}
