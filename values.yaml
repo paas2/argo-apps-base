@@ -23,6 +23,10 @@ global:
     app:
       destination:
         server: https://kubernetes.default.svc
+      enableAutoSync: true
+      autoSyncPrune: true
+      source:
+        targetRevision: HEAD        
 
         # extraSourceFields: |
         #   helm:
