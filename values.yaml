@@ -20,17 +20,9 @@ default:
     # destinations: |
     #   - namespace: {{ $.Values.default.app.destination.namespace | required "Missing proj dest namespace"}}
     #     server: {{ $.Values.default.app.destination.server | required "Missing proj dest server" }}
-  # app:
-  #   enableAutoSync: null
-  #   autoSyncPrune: true
-  #   destination:
-  #     namespace: null
-  #     server: null
-  #   project: null
-  #   source:
-  #     path: null
-  #     repoURL: null
-  #     targetRevision: HEAD
+  app:
+    destination:
+      server: https://kubernetes.default.svc
 
       # extraSourceFields: |
       #   helm:

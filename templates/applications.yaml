@@ -13,7 +13,7 @@ metadata:
 spec:
   destination:
     namespace: {{ $val.destination.namespace | required (printf "No destination.namespace specified for %s" $key ) }}
-    server: {{ $val.destination.server | required (printf "No destination.server specified for %s" $key ) }}
+    server: {{ .Values.default.app.destination.server | required (printf "No destination.server specified for %s" $key ) }}
 {{- if $.Values.global.projectOverride }}
   project: {{ $.Values.global.projectOverride }}
 {{- else }}
@@ -28,8 +28,8 @@ spec:
 {{- end }}
   source:
     path: {{ tpl $val.source.path $ }}
-    repoURL: {{ $val.source.repoURL | default $.Values.global.default.app.source.repoURL | required (printf "No source.repoURL specified for %s" $key ) }}
-    targetRevision: {{ $val.source.targetRevision | default $.Values.global.default.app.source.targetRevision | required (printf "No source.targetRevision specified for %s" $key ) }}
+    repoURL: {{ $val.source.repoURL | required (printf "No source.repoURL specified for %s" $key ) }}
+    targetRevision: {{ $val.source.targetRevision | default $.Values.global.default.app.source.targetRevision |  default HEAD  }}
 {{- if $val.source.extraSourceFields }}
 {{ tpl $val.source.extraSourceFields $ | indent 4 }}
 {{- else if $.Values.global.default.app.source.extraSourceFields }}

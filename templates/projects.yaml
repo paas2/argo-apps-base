@@ -5,6 +5,7 @@ in order to use tpl within a range, _and_ have the key/val available to sub-temp
 need to add some variables to the root context.
 */ -}}
 {{- $_ := set $ "curProjName" (print $.Values.envName "-" $key) }}
+{{- if $val.enabled }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -30,6 +31,7 @@ spec:
 {{- else if $.Values.default.project.destinations }}
   destinations:
 {{ tpl $.Values.default.project.destinations $ | indent 4 }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
