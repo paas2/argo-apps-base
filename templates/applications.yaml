@@ -17,7 +17,7 @@ spec:
 {{- if $.Values.global.projectOverride }}
   project: {{ $.Values.global.projectOverride }}
 {{- else }}
-  project: {{ $.Values.global.envName }}-{{ $val.project | required (printf "No project specified for %s" $key ) }}
+  project: {{ $val.project | required (printf "No project specified for %s" $key ) }}
 {{- end }}
   syncPolicy:
    syncOptions:
